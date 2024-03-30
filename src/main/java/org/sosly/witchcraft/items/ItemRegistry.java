@@ -1,4 +1,4 @@
-package org.sosly.covenscraft.items;
+package org.sosly.witchcraft.items;
 
 import com.mna.api.items.MACreativeTabs;
 import com.mna.items.armor.MAArmorMaterial;
@@ -10,12 +10,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.sosly.covenscraft.CovensCraft;
-import org.sosly.covenscraft.items.armor.CovenArmorItem;
+import org.sosly.witchcraft.Witchcraft;
+import org.sosly.witchcraft.items.armor.CovenArmorItem;
 
-@Mod.EventBusSubscriber(modid= CovensCraft.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid= Witchcraft.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegistry {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CovensCraft.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Witchcraft.MODID);
     public static final RegistryObject<Item> COVEN_ARMOR_CHEST = ITEMS.register("coven_armor_chest", () -> new CovenArmorItem(
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> COVEN_ARMOR_LEGGINGS = ITEMS.register("coven_armor_leggings", () -> new CovenArmorItem(

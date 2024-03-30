@@ -1,8 +1,8 @@
-package org.sosly.covenscraft.items.models;
+package org.sosly.witchcraft.items.models;
 
 import net.minecraft.resources.ResourceLocation;
-import org.sosly.covenscraft.CovensCraft;
-import org.sosly.covenscraft.items.armor.CovenArmorItem;
+import org.sosly.witchcraft.Witchcraft;
+import org.sosly.witchcraft.items.armor.CovenArmorItem;
 import software.bernie.geckolib.model.GeoModel;
 
 public class CovenArmorModel extends GeoModel<CovenArmorItem> {
@@ -10,11 +10,11 @@ public class CovenArmorModel extends GeoModel<CovenArmorItem> {
     }
 
     public ResourceLocation getModelResource(CovenArmorItem object) {
-        return new ResourceLocation(CovensCraft.MODID, "geo/coven_armor.geo.json");
+        return new ResourceLocation(Witchcraft.MODID, "geo/coven_armor.geo.json");
     }
 
     public ResourceLocation getTextureResource(CovenArmorItem object) {
-        return new ResourceLocation(CovensCraft.MODID, "textures/item/coven_armor.png");
+        return new ResourceLocation(Witchcraft.MODID, "textures/item/coven_armor.png");
     }
 
     public ResourceLocation getAnimationResource(CovenArmorItem animatable) {

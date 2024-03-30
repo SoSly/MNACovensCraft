@@ -1,4 +1,4 @@
-package org.sosly.covenscraft.factions;
+package org.sosly.witchcraft.factions;
 
 import com.mna.api.faction.BaseFaction;
 import net.minecraft.ChatFormatting;

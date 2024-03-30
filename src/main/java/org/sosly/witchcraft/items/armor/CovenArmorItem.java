@@ -1,4 +1,4 @@
-package org.sosly.covenscraft.items.armor;
+package org.sosly.witchcraft.items.armor;
 
 import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
@@ -19,9 +19,9 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
-import org.sosly.covenscraft.CovensCraft;
-import org.sosly.covenscraft.factions.FactionRegistry;
-import org.sosly.covenscraft.items.renderers.CovenArmorRenderer;
+import org.sosly.witchcraft.Witchcraft;
+import org.sosly.witchcraft.factions.FactionRegistry;
+import org.sosly.witchcraft.items.renderers.CovenArmorRenderer;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -34,7 +34,7 @@ import java.util.function.Consumer;
 
 public class CovenArmorItem extends ArmorItem implements GeoItem, ISetItem, ITieredItem<CovenArmorItem>, IFactionSpecific, IBrokenArmorReplaceable<CovenArmorItem>, IManaRepairable {
     private int tier = -1;
-    private static final ResourceLocation COVEN_SET_BONUS = new ResourceLocation(CovensCraft.MODID, "coven_armor_set_bonus");
+    private static final ResourceLocation COVEN_SET_BONUS = new ResourceLocation(Witchcraft.MODID, "coven_armor_set_bonus");
     private AnimatableInstanceCache animCache = GeckoLibUtil.createInstanceCache(this);
 
     public CovenArmorItem(ArmorMaterial material, Type slot, Properties builder) {
