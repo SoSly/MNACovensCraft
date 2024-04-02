@@ -12,3 +12,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - bloody vinteum needles now turn red (thanks Aranai!)
 - you can now craft a poppet from wool and animus dust; they're cute l'il guys
 - you can combine a bloody needle and a poppet to create a bound poppet
+
+### Changed
+- players now hold the vinteum needle in a more appropriate manner for stabbing people

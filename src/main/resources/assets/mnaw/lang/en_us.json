@@ -1,3 +1,5 @@
 {
-  "block.mnaw.poppet": "Poppet"
+  "block.mnaw.poppet": "Poppet",
+  "block.mnaw.bound_poppet": "Bound Poppet",
+  "item.mnaw.bloody_needle": "Bloody Needle"
 }
