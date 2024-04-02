@@ -13,9 +13,9 @@ import net.minecraftforge.registries.RegistryObject;
 import org.sosly.witchcraft.Witchcraft;
 import org.sosly.witchcraft.items.armor.CovenArmorItem;
 
-@Mod.EventBusSubscriber(modid= Witchcraft.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid= Witchcraft.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegistry {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Witchcraft.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Witchcraft.MOD_ID);
     public static final RegistryObject<Item> COVEN_ARMOR_CHEST = ITEMS.register("coven_armor_chest", () -> new CovenArmorItem(
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> COVEN_ARMOR_LEGGINGS = ITEMS.register("coven_armor_leggings", () -> new CovenArmorItem(

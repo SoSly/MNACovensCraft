@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "mnaw:block/poppet"},
+    "facing=east":  { "model": "mnaw:block/poppet", "y":  90},
+    "facing=south": { "model": "mnaw:block/poppet", "y": 180},
+    "facing=west":  { "model": "mnaw:block/poppet", "y": 270}
+  }
+}

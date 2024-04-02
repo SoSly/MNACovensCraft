@@ -9,14 +9,14 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegisterEvent;
 import org.sosly.witchcraft.Witchcraft;
 
-@Mod.EventBusSubscriber(modid = Witchcraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Witchcraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class FactionRegistry {
     public static final IFaction COVEN = new Coven();
 
     @SubscribeEvent
     public static void registerFactions(RegisterEvent event) {
         event.register(((IForgeRegistry) Registries.Factions.get()).getRegistryKey(), (helper) -> {
-            helper.register(new ResourceLocation(Witchcraft.MODID,"coven"), COVEN);
+            helper.register(new ResourceLocation(Witchcraft.MOD_ID,"coven"), COVEN);
         });
     }
 }

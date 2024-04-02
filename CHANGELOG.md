@@ -10,3 +10,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - you can now use a vinteum needle to collect blood from an unwilling victim
 - you can wash a bloody vinteum needle to remove the blood
 - bloody vinteum needles now turn red (thanks Aranai!)
+- you can now craft a poppet from wool and animus dust; they're cute l'il guys
+- you can combine a bloody needle and a poppet to create a bound poppet
