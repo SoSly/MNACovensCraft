@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "mnaw:poppet"},
+    {"item": "mna:vinteum_needle"}
+  ],
+    "result": {
+        "item": "mnaw:bound_poppet"
+    }
+}

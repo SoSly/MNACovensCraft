@@ -8,17 +8,19 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import org.sosly.witchcraft.blocks.BlockRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(Witchcraft.MODID)
+@Mod(Witchcraft.MOD_ID)
 public class Witchcraft {
-    public static final String MODID = "mnaw";
+    public static final String MOD_ID = "mnaw";
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public Witchcraft() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        BlockRegistry.BLOCKS.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);

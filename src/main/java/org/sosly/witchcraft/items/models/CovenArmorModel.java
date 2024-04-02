@@ -10,11 +10,11 @@ public class CovenArmorModel extends GeoModel<CovenArmorItem> {
     }
 
     public ResourceLocation getModelResource(CovenArmorItem object) {
-        return new ResourceLocation(Witchcraft.MODID, "geo/coven_armor.geo.json");
+        return new ResourceLocation(Witchcraft.MOD_ID, "geo/coven_armor.geo.json");
     }
 
     public ResourceLocation getTextureResource(CovenArmorItem object) {
-        return new ResourceLocation(Witchcraft.MODID, "textures/item/coven_armor.png");
+        return new ResourceLocation(Witchcraft.MOD_ID, "textures/item/coven_armor.png");
     }
 
     public ResourceLocation getAnimationResource(CovenArmorItem animatable) {
