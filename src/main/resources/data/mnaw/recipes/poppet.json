@@ -12,5 +12,8 @@
     "A": {
         "item": "mna:animus_dust"
     }
+  },
+  "result": {
+    "item": "mnaw:poppet"
   }
 }

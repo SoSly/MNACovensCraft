@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {"item": "mnaw:poppet"},
-    {"item": "mna:vinteum_needle"}
+    {"item": "mnaw:bloody_needle"}
   ],
-    "result": {
-        "item": "mnaw:bound_poppet"
-    }
+  "result": {
+      "item": "mnaw:bound_poppet"
+  }
 }
