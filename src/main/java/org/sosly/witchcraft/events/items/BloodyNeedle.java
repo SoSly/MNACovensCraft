@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,6 +30,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.sosly.witchcraft.Witchcraft;
 import org.sosly.witchcraft.items.ItemRegistry;
+import org.sosly.witchcraft.utils.SympathyHelper;
 
 import java.util.UUID;
 
@@ -68,24 +70,26 @@ public class BloodyNeedle {
             return;
         }
 
-        UUID uuid = tag.getUUID("target");
-        ServerLevel level = (ServerLevel) event.getEntity().level();
-        Entity entity = level.getEntity(uuid);
-        if (entity == null) {
+        if (!SympathyHelper.isBound(needle)) {
             event.setResult(Event.Result.DENY);
             event.setCanceled(true);
             return;
         }
 
-        String name = entity.getDisplayName().getString();
-        if (!(entity instanceof Player)) {
-            name = "a " + name;
+        UUID target = tag.getUUID("target");
+
+        Entity entity = SympathyHelper.getBoundEntity(needle, (ServerLevel) event.getEntity().level());
+        Component name = craftedItem.getDisplayName();
+        if (entity instanceof Player) {
+            name = Component.translatable("block.mnaw.bound_poppet.named.player", entity.getDisplayName().getString());
+        } else if (entity instanceof Mob) {
+            name = Component.translatable("block.mnaw.bound_poppet.named.mob", entity.getDisplayName().getString());
         }
 
         CompoundTag poppetTag = craftedItem.getOrCreateTag();
-        poppetTag.putUUID("target", uuid);
+        poppetTag.putUUID("target", target);
         craftedItem.setTag(poppetTag);
-        craftedItem.setHoverName(Component.literal("Bound Poppet of " + name));
+        craftedItem.setHoverName(name);
     }
 
     @SubscribeEvent

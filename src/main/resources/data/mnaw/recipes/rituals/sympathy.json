@@ -1,0 +1,70 @@
+{
+  "type": "mna:ritual",
+  "tier": 3,
+  "pattern": [
+    [  0,  0, 15, 16,  1,  0,  0],
+    [  0, 14,  0, 17,  0,  2,  0],
+    [ 13,  0,  0, 18,  0,  0,  3],
+    [ 12, 23, 24, 19, 25, 26,  4],
+    [ 11,  0,  0, 20,  0,  0,  5],
+    [  0, 10,  0, 21,  0,  6,  0],
+    [  0,  0,  9,  8,  7,  0,  0]
+  ],
+  "reagents": [
+    "   A   ",
+    "   S   ",
+    "T     B",
+    "   P   ",
+    "       ",
+    " D C W ",
+    "       "
+  ],
+  "keys": {
+    "C": {
+      "item": "mna:player_charm",
+      "optional": false,
+      "consume": false
+    },
+    "P": {
+      "item": "mnaw:bound_poppet",
+      "optional": false,
+      "consume": false
+    },
+    "S": {
+      "item": "mna:spell",
+      "optional": false,
+      "consume": false
+    },
+    "A": {
+      "item": "mna:aum",
+      "optional": false,
+      "consume": true
+    },
+    "B": {
+      "item": "mna:cerublossom",
+      "optional": false,
+      "consume": true
+    },
+    "T": {
+      "item": "mna:tarma_root",
+      "optional": false,
+      "consume": true
+    },
+    "D": {
+      "item": "mna:desert_nova",
+      "optional": false,
+      "consume": true
+    },
+    "W": {
+      "item": "mna:wakebloom",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "parameters": {
+    "innerColor": "0xFF0000",
+    "outerColor": "0xC90000",
+    "beamColor": "0xFF0000",
+    "connectBeam": false
+  }
+}
