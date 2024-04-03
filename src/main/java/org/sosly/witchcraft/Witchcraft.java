@@ -1,13 +1,16 @@
 package org.sosly.witchcraft;
 
-import com.mojang.logging.LogUtils;
+import com.mna.api.guidebook.RegisterGuidebooksEvent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.blocks.BlockRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
 
@@ -15,7 +18,7 @@ import org.sosly.witchcraft.items.ItemRegistry;
 @Mod(Witchcraft.MOD_ID)
 public class Witchcraft {
     public static final String MOD_ID = "mnaw";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger(Witchcraft.class);
 
     public Witchcraft() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,5 +30,11 @@ public class Witchcraft {
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
+
+    @SubscribeEvent
+    public void onRegisterGuidebooks(RegisterGuidebooksEvent event) {
+        event.getRegistry().addGuidebookPath(new ResourceLocation(MOD_ID, "guide"));
+        LOGGER.info("guide registered");
     }
 }

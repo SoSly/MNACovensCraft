@@ -1,5 +1,15 @@
 {
   "block.mnaw.poppet": "Poppet",
   "block.mnaw.bound_poppet": "Bound Poppet",
-  "item.mnaw.bloody_needle": "Bloody Needle"
+  "block.mnaw.bound_poppet.named.player": "Bound Poppet of %s",
+  "block.mnaw.bound_poppet.named.mob": "Bound Poppet of a %s",
+
+  "item.mnaw.bloody_needle": "Bloody Needle",
+
+  "mnaw:rituals/sympathy": "Ritual of Sympathy",
+
+  "rituals.error.no_caster": "No player reference found for ritual, aborting.",
+  "rituals.error.tier_required": "You must be at least tier %d to perform this ritual.",
+  "rituals.error.no_target": "No target found for ritual, aborting.",
+  "rituals.sympathy.not_a_witch": "Only coven witches can perform this ritual."
 }

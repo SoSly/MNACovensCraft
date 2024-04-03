@@ -1,0 +1,39 @@
+{
+  "Ritual: Sympathy": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ritual of Sympathy"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This ritual allows me to use a sympathetic link to a a player or mob to apply my magic over "
+          },
+          {
+            "text": "great distances. I must have a poppet bound to my target, as well as a player charm bound to myself."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "mnaw:rituals/sympathy"
+      },
+      {
+        "type": "crafting",
+        "location": "mnaw:poppet"
+      },
+      {
+        "type": "crafting",
+        "location": "mnaw:bound_poppet"
+      }
+    ]
+  },
+  "version": "0.1.0-alpha"
+}
