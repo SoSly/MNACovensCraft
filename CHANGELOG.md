@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - you can now craft a poppet from wool and animus dust; they're cute l'il guys
 - you can combine a bloody needle and a poppet to create a bound poppet
 - you can now use the ritual of sympathy to cast spells on the target of a bound poppet
+- a new configuration has been added to block sympathetic magic in boss arenas
+- a new configuration has been added to prevent sympathetic magic from targeting bosses
 
 ### Changed
 - players now hold the vinteum needle in a more appropriate manner for stabbing people

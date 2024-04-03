@@ -11,5 +11,7 @@
   "rituals.error.no_caster": "No player reference found for ritual, aborting.",
   "rituals.error.tier_required": "You must be at least tier %d to perform this ritual.",
   "rituals.error.no_target": "No target found for ritual, aborting.",
-  "rituals.sympathy.not_a_witch": "Only coven witches can perform this ritual."
+  "rituals.sympathy.no_self_spells": "Sympathetic magic does not work with spells that target yourself.",
+  "rituals.sympathy.not_a_witch": "Only coven witches can perform this ritual.",
+  "rituals.sympathy.target_protected": "Something is protecting your target."
 }
