@@ -16,12 +16,18 @@ public class Config
             .comment("Should sympathetic magic affect players when they are near bosses?")
             .define("bossesBlockSympathy", true);
 
+    private static final ForgeConfigSpec.BooleanValue BOSSES_IMMUNE_TO_SYMPATHY = BUILDER
+            .comment("Should bosses be immune to sympathetic magic?")
+            .define("bossesImmuneToSympathy", true);
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static boolean bossesBlockSympathy;
+    public static boolean bossesImmuneToSympathy;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
         bossesBlockSympathy = BOSSES_BLOCK_SYMPATHY.get();
+        bossesImmuneToSympathy = BOSSES_IMMUNE_TO_SYMPATHY.get();
     }
 }

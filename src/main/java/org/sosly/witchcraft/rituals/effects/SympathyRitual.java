@@ -99,6 +99,11 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
+        if (Config.bossesImmuneToSympathy && SympathyHelper.isBoss(target)) {
+            player.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
+            return false;
+        }
+
         ICanContainSpell spellItemCapability = (ICanContainSpell) spellItem.getItem();
         ISpellDefinition spell = spellItemCapability.getSpell(spellItem, player);
         if (spell.getShape() != null && isSelfSpell(spell.getShape().getPart())) {
