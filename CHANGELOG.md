@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - you can now use the ritual of sympathy to cast spells on the target of a bound poppet
 - a new configuration has been added to block sympathetic magic in boss arenas
 - a new configuration has been added to prevent sympathetic magic from targeting bosses
+- a new configuration has been added to set the number of spelleffects required to progress as a witch
+- the coven and dark coven factions have been added to the game
 
 ### Changed
 - players now hold the vinteum needle in a more appropriate manner for stabbing people
