@@ -1,7 +1,6 @@
 package org.sosly.witchcraft.factions;
 
 import com.mna.api.faction.BaseFaction;
-import com.mna.api.faction.IFaction;
 import com.mna.gui.GuiTextures;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -12,16 +11,9 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.sosly.witchcraft.api.CastingResourceIDs;
 
-import java.util.List;
-
-public class Coven extends BaseFaction {
-    public Coven() {
-        super(CastingResourceIDs.ESSENCE);
-    }
-
-    @Override
-    public List<IFaction> getEnemyFactions() {
-        return List.of();
+public class DarkCoven extends BaseFaction {
+    public DarkCoven() {
+        super(CastingResourceIDs.MALICE);
     }
 
     @Override
@@ -52,7 +44,6 @@ public class Coven extends BaseFaction {
 
     @Override
     public ResourceLocation getFactionIcon() {
-//        return new ResourceLocation(Witchcraft.MOD_ID, "textures/gui/coven_icon.png");
         return GuiTextures.Widgets.FACTION_ICON_COUNCIL;
     }
 
@@ -64,6 +55,6 @@ public class Coven extends BaseFaction {
 
     @Override
     public ChatFormatting getTornJournalPageFactionColor() {
-        return ChatFormatting.LIGHT_PURPLE;
+        return ChatFormatting.DARK_PURPLE;
     }
 }

@@ -12,6 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.blocks.BlockRegistry;
+import org.sosly.witchcraft.commands.CommandRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -26,6 +27,7 @@ public class Witchcraft {
         BlockRegistry.BLOCKS.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
 
+        MinecraftForge.EVENT_BUS.register(CommandRegistry.class);
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
