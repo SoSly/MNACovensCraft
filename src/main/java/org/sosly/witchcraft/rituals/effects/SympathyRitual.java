@@ -3,7 +3,6 @@ package org.sosly.witchcraft.rituals.effects;
 import com.mna.api.capabilities.IPlayerProgression;
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
-import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.ICanContainSpell;
 import com.mna.api.spells.base.IModifiedSpellPart;
 import com.mna.api.spells.base.ISpellDefinition;
@@ -13,6 +12,7 @@ import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.api.tools.MATags;
+import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.items.filters.SpellItemFilter;
 import com.mna.spells.SpellsInit;
@@ -50,8 +50,8 @@ public class SympathyRitual extends RitualEffect {
             return Component.translatable("rituals.error.no_caster");
         }
 
-        IPlayerProgression p = ctx.getCaster().getCapability(PlayerProgressionProvider.PROGRESSION).orElse(null);
-        if (p == null || p.getTier() < 3) {
+        IPlayerProgression p = ctx.getCaster().getCapability(PlayerProgressionProvider.PROGRESSION).orElse(new PlayerProgression());
+        if (p.getTier() < 3) {
             return Component.translatable("rituals.error.tier_required", 3);
         }
 
@@ -70,8 +70,8 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
-        IPlayerProgression p = player.getCapability(PlayerProgressionProvider.PROGRESSION).orElse(null);
-        if (p == null || p.getTier() < 3 || p.getAlliedFaction() != FactionRegistry.COVEN) {
+        IPlayerProgression p = player.getCapability(PlayerProgressionProvider.PROGRESSION).orElse(new PlayerProgression());
+        if (p.getTier() < 3 || !FactionRegistry.isWitch(p)) {
             player.sendSystemMessage(Component.translatable("rituals.sympathy.not_a_witch"));
             return false;
         }
@@ -154,7 +154,7 @@ public class SympathyRitual extends RitualEffect {
                 || part.equals(SpellsInit.BOUND_BOW) || part.equals(SpellsInit.BOUND_SHIELD);
     }
 
-    private ComponentApplicationResult affectTarget(Level level, IModifiedSpellPart<Shape> shape, SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> effect, SpellContext ctx) {
-        return effect.getPart().ApplyEffect(source, target, effect, ctx);
+    private void affectTarget(Level level, IModifiedSpellPart<Shape> shape, SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> effect, SpellContext ctx) {
+        effect.getPart().ApplyEffect(source, target, effect, ctx);
     }
 }
