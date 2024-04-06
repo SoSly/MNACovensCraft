@@ -12,11 +12,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.sosly.witchcraft.Witchcraft;
 import org.sosly.witchcraft.items.armor.CovenArmorItem;
+import org.sosly.witchcraft.items.sympathy.AntiSympathyCharmItem;
 import org.sosly.witchcraft.items.sympathy.BloodyNeedleItem;
 
 @Mod.EventBusSubscriber(modid= Witchcraft.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Witchcraft.MOD_ID);
+    public static final RegistryObject<Item> ANTISYMPATHY_CHARM = ITEMS.register("antisympathy_charm", AntiSympathyCharmItem::new);
     public static final RegistryObject<Item> COVEN_ARMOR_CHEST = ITEMS.register("coven_armor_chest", () -> new CovenArmorItem(
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> COVEN_ARMOR_LEGGINGS = ITEMS.register("coven_armor_leggings", () -> new CovenArmorItem(

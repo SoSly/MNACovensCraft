@@ -1,4 +1,32 @@
 {
+  "Bloodstone Charm": {
+    "index": 0,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bloodstone Charm"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Supposedly this charm will ward off spells cast by witches, yet all the witches I have met only "
+          },
+          {
+            "text": "ever throw potions at me.  I am not entirely convinced if this thing is useful!"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:antisympathy_charm"
+      }
+    ]
+  },
   "Ritual: Sympathy": {
     "index": 0,
     "category": "rituals",
