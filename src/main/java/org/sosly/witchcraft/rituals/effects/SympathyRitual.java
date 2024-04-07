@@ -22,17 +22,26 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.Config;
 import org.sosly.witchcraft.Witchcraft;
 import org.sosly.witchcraft.factions.FactionRegistry;
+import org.sosly.witchcraft.items.ItemRegistry;
+import org.sosly.witchcraft.items.sympathy.AntiSympathyCharmItem;
 import org.sosly.witchcraft.utils.SympathyHelper;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+
+import java.util.Optional;
 
 public class SympathyRitual extends RitualEffect {
     private final Item BOUND_POPPET_ITEM;
@@ -111,6 +120,12 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
+        float complexity = spell.getComplexity();
+        if (target instanceof Player playerTarget && isProtectedByCharm(playerTarget, (int)complexity)) {
+            player.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
+            return false;
+        }
+
         IModifiedSpellPart<Shape> spellShape = spell.getShape();
         SpellSource spellSource = new SpellSource(player, InteractionHand.MAIN_HAND);
         SpellTarget spellTarget = new SpellTarget(target);
@@ -156,5 +171,33 @@ public class SympathyRitual extends RitualEffect {
 
     private void affectTarget(Level level, IModifiedSpellPart<Shape> shape, SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> effect, SpellContext ctx) {
         effect.getPart().ApplyEffect(source, target, effect, ctx);
+    }
+
+    private boolean isProtectedByCharm(LivingEntity target, int complexity) {
+        LazyOptional<ICuriosItemHandler> locurios = CuriosApi.getCuriosInventory(target);
+        if (!locurios.isPresent() || locurios.resolve().isEmpty()) {
+            return false;
+        }
+
+        ICuriosItemHandler curios = locurios.resolve().get();
+        Optional<SlotResult> equipped = curios.findFirstCurio(ItemRegistry.ANTISYMPATHY_CHARM.get());
+        if (equipped.isEmpty()) {
+            return false;
+        }
+
+        ItemStack charm = equipped.get().stack();
+        if (charm.isEmpty()) {
+            return false;
+        }
+
+        AntiSympathyCharmItem item = (AntiSympathyCharmItem) charm.getItem();
+        if (!item.consumeMana(charm, complexity, null)) {
+            target.sendSystemMessage(Component.translatable("rituals.sympathy.charm_broken"));
+            charm.shrink(1);
+            return true;
+        }
+
+        target.sendSystemMessage(Component.translatable("rituals.sympathy.charm_resisted"));
+        return true;
     }
 }

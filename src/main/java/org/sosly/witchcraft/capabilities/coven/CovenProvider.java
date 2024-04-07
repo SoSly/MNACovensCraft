@@ -31,13 +31,15 @@ public class CovenProvider implements ICapabilitySerializable<Tag> {
             nbt.putBoolean("malice", true);
         }
         for (int tier = 3; tier <= 5; tier++) {
-            CompoundTag tierTag = new CompoundTag();
-            tierTag.putInt("size", instance.getTierEffectsRequired(tier).size());
-            AtomicInteger index = new AtomicInteger(0);
-            instance.getTierEffectsRequired(tier).forEach(effect -> {
-                tierTag.putString("effect_" + index.getAndIncrement(), effect.getRegistryName().toString());
-            });
-            nbt.put("tier_" + tier, tierTag);
+            if (instance.getTierEffectsRequired(tier) != null) {
+                CompoundTag tierTag = new CompoundTag();
+                tierTag.putInt("size", instance.getTierEffectsRequired(tier).size());
+                AtomicInteger index = new AtomicInteger(0);
+                instance.getTierEffectsRequired(tier).forEach(effect -> {
+                    tierTag.putString("effect_" + index.getAndIncrement(), effect.getRegistryName().toString());
+                });
+                nbt.put("tier_" + tier, tierTag);
+            }
         }
         return nbt;
     }

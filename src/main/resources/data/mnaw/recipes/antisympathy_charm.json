@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "mnaw:antisympathy_charm",
+  "tier": 3,
+  "items": [
+    "mna:vinteum_coated_iron",
+    "minecraft:feather",
+    "minecraft:feather",
+    "minecraft:string",
+    "minecraft:black_dye",
+    "mna:vinteum_dust"
+  ],
+  "patterns": [
+    "mna:slash",
+    "mna:backslash",
+    "mna:inverted_triangle"
+  ]
+}
