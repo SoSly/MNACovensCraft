@@ -38,6 +38,7 @@ public class SympathyHelper {
         if (entity == null) {
             entity = level.getEntity(target);
         }
+
         return entity;
     }
 }

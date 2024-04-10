@@ -1,0 +1,51 @@
+{
+  "type": "mna:ritual",
+  "tier": 3,
+  "pattern": [
+    [  0, 0, 8, 9,10],
+    [  0, 0, 7, 0,11],
+    [  0, 0, 6, 0,12],
+    [  0, 0, 5, 0, 0],
+    [  0, 3, 4, 2, 1]
+  ],
+  "reagents": [
+    "  LWW",
+    "  L S",
+    "  L C",
+    "  L  ",
+    " WXWW"
+  ],
+  "keys": {
+    "S": {
+        "item": "minecraft:string",
+        "optional": false,
+        "consume": true
+    },
+    "C": {
+      "item": "mna:player_charm",
+      "optional": false,
+      "consume": true
+    },
+    "X": {
+      "item": "mna:decoration/arcane_stone",
+      "optional": false,
+      "consume": true
+    },
+    "L": {
+      "item": "minecraft:oak_log",
+      "optional": false,
+      "consume": true
+    },
+    "W": {
+      "item": "minecraft:oak_planks",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "parameters": {
+    "innerColor": "0xFF0000",
+    "outerColor": "0xC90000",
+    "beamColor": "0xFF0000",
+    "connectBeam": false
+  }
+}

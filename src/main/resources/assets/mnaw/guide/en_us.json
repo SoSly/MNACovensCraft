@@ -27,6 +27,34 @@
       }
     ]
   },
+  "Ritual: Broken Sympathy": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ritual of Broken Sympathy"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This ritual cannot protect me from sympathetic magic, but it will destroy any items that are "
+          },
+          {
+            "text": "used against me.  I must have a player charm bound to myself."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "mnaw:rituals/broken_sympathy"
+      }
+    ]
+  },
   "Ritual: Sympathy": {
     "index": 0,
     "category": "rituals",

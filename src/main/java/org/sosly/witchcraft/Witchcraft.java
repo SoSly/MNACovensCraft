@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.blocks.BlockRegistry;
 import org.sosly.witchcraft.commands.CommandRegistry;
+import org.sosly.witchcraft.effects.EffectRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -22,10 +23,11 @@ public class Witchcraft {
     public static final Logger LOGGER = LogManager.getLogger(Witchcraft.class);
 
     public Witchcraft() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        BlockRegistry.BLOCKS.register(modEventBus);
-        ItemRegistry.ITEMS.register(modEventBus);
+        BlockRegistry.BLOCKS.register(modbus);
+        EffectRegistry.EFFECTS.register(modbus);
+        ItemRegistry.ITEMS.register(modbus);
 
         MinecraftForge.EVENT_BUS.register(CommandRegistry.class);
         MinecraftForge.EVENT_BUS.register(this);
