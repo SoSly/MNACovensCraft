@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - the coven and dark coven factions have been added to the game
 - a new charm has been added to protect the wearer from sympathetic magic
 - you can now use the ritual of broken sympathy to destroy a bound poppet
+- added an entry about factionless mages to the codex
 
 ### Changed
 - players now hold the vinteum needle in a more appropriate manner for stabbing people
