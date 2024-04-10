@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/SoSly/MNAWitchcraft/tree/1.20.1)
 
-## [1.20.1-forge-0.1.0-alpha]()
+## [1.20.1-forge-0.1.0-alpha](https://github.com/SoSly/MnAWitchcraft/releases/tag/1.20.1-forge-0.1.0-alpha)
 ### Added
 - you can now use a vinteum needle to collect blood from an unwilling victim
 - you can wash a bloody vinteum needle to remove the blood
