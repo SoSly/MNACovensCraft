@@ -27,6 +27,75 @@
       }
     ]
   },
+  "Factionless Mages": {
+    "index": 11,
+    "category": "basics",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Factionless Mages"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Some mages choose to remain factionless, preferring to live in the wilds and avoid the politics "
+          },
+          {
+            "text": "of the faction war.  They are often seen as outcasts, but they are also free to practice their "
+          },
+          {
+            "text": "magic as they see fit."
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "Factionless mages are often seen as dangerous, as they are not bound by the laws of the factions. "
+          },
+          {
+            "text": "They have learned some form of sympathetic magic which allows them to cast spells over great "
+          },
+          {
+            "text": "distances, but supposedly their magic is severely curtailed, yet I'm not sure how."
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "I have heard that these mages prefer the to be referred to as "
+          },
+          {
+            "text": "Hedge Witches",
+            "color": "purple"
+          },
+          {
+            "text": ".  This makes me wonder whether they have learned some of their secrets from the wild witches I "
+          },
+          {
+            "text": "have encountered in the swamps.  Perhaps if I can observe a witch in secret I will learn more."
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "There are also rumors that some of these factionless mages have forsworn their neutrality and "
+          },
+          {
+            "text": "angered all of the factions.  Woe to these "
+          },
+          {
+            "text": "Spite Witches",
+            "color": "red"
+          },
+          {
+              "text": ", for they are hunted by all."
+          }
+        ]
+      }
+    ]
+  },
   "Ritual: Broken Sympathy": {
     "index": 0,
     "category": "rituals",
