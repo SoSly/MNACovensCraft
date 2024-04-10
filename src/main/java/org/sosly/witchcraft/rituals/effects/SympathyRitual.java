@@ -12,6 +12,7 @@ import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.api.tools.MATags;
+import com.mna.blocks.tileentities.ChalkRuneTile;
 import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.items.filters.SpellItemFilter;
@@ -21,18 +22,21 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.Config;
 import org.sosly.witchcraft.Witchcraft;
+import org.sosly.witchcraft.effects.beneficial.BrokenSympathyEffect;
 import org.sosly.witchcraft.factions.FactionRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
 import org.sosly.witchcraft.items.sympathy.AntiSympathyCharmItem;
@@ -120,6 +124,16 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
+        if (target instanceof LivingEntity livingTarget) {
+            Optional<MobEffectInstance> brokenSympathy = getBrokenSympathy(livingTarget);
+            brokenSympathy.ifPresent(mobEffectInstance -> livingTarget.removeEffect(mobEffectInstance.getEffect()));
+            player.sendSystemMessage(Component.translatable("rituals.sympathy.poppet_broken"));
+            BlockEntity rune = level.getBlockEntity(ctx.getCenter());
+            if (rune instanceof ChalkRuneTile chalkRuneTile) {
+                chalkRuneTile.clearStack();
+            }
+        }
+
         float complexity = spell.getComplexity();
         if (target instanceof Player playerTarget && isProtectedByCharm(playerTarget, (int)complexity)) {
             player.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
@@ -199,5 +213,11 @@ public class SympathyRitual extends RitualEffect {
 
         target.sendSystemMessage(Component.translatable("rituals.sympathy.charm_resisted"));
         return true;
+    }
+
+    private Optional<MobEffectInstance> getBrokenSympathy(LivingEntity target) {
+        return target.getActiveEffects().stream()
+                .filter(e -> e.getEffect() instanceof BrokenSympathyEffect)
+                .findFirst();
     }
 }

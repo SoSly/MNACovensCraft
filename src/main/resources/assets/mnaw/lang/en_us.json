@@ -4,18 +4,22 @@
   "block.mnaw.bound_poppet.named.player": "Bound Poppet of %s",
   "block.mnaw.bound_poppet.named.mob": "Bound Poppet of a %s",
 
+  "effect.mnaw.broken_sympathy": "Broken Sympathy",
+
   "item.mnaw.antisympathy_charm": "Bloodstone Charm",
   "item.mnaw.antisympathy_charm.flavor": "Who knows if this thing even works, but it looks neat.",
   "item.mnaw.bloody_needle": "Bloody Needle",
 
+  "mnaw:rituals/broken_sympathy": "Ritual of Broken Sympathy",
   "mnaw:rituals/sympathy": "Ritual of Sympathy",
 
   "rituals.error.no_caster": "No player reference found for ritual, aborting.",
   "rituals.error.tier_required": "You must be at least tier %d to perform this ritual.",
   "rituals.error.no_target": "No target found for ritual, aborting.",
-  "rituals.sympathy.no_self_spells": "Sympathetic magic does not work with spells that target yourself.",
-  "rituals.sympathy.not_a_witch": "Only coven witches can perform this ritual.",
   "rituals.sympathy.charm_broken": "Your bloodstone charm shatters.",
   "rituals.sympathy.charm_resisted": "A new crack forms in your bloodstone charm.",
+  "rituals.sympathy.no_self_spells": "Sympathetic magic does not work with spells that target yourself.",
+  "rituals.sympathy.not_a_witch": "Only coven witches can perform this ritual.",
+  "rituals.sympathy.poppet_broken": "Your poppet was destroyed",
   "rituals.sympathy.target_protected": "Something is protecting your target."
 }
