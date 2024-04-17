@@ -1,5 +1,6 @@
 package org.sosly.witchcraft.factions;
 
+import com.mna.api.affinity.Affinity;
 import com.mna.api.faction.BaseFaction;
 import com.mna.api.faction.IFaction;
 import com.mna.gui.GuiTextures;
@@ -59,7 +60,7 @@ public class Coven extends BaseFaction {
     @Nullable
     @Override
     public int[] getManaweaveRGB() {
-        return new int[0];
+        return null;
     }
 
     @Override
