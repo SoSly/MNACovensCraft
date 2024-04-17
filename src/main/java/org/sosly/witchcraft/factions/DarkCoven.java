@@ -1,5 +1,6 @@
 package org.sosly.witchcraft.factions;
 
+import com.mna.api.affinity.Affinity;
 import com.mna.api.faction.BaseFaction;
 import com.mna.gui.GuiTextures;
 import net.minecraft.ChatFormatting;
@@ -50,7 +51,7 @@ public class DarkCoven extends BaseFaction {
     @Nullable
     @Override
     public int[] getManaweaveRGB() {
-        return new int[0];
+        return null;
     }
 
     @Override
