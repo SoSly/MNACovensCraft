@@ -4,16 +4,10 @@ import com.mna.items.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -26,27 +20,23 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.sosly.witchcraft.Witchcraft;
 import org.sosly.witchcraft.items.ItemRegistry;
+import org.sosly.witchcraft.items.sympathy.BoundPoppetItem;
 import org.sosly.witchcraft.utils.SympathyHelper;
 
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Witchcraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BloodyNeedle {
-    private static Item PoppetItem;
-    private static Item BoundPoppetItem;
+
 
     @SubscribeEvent
     public static void onCraftWithPoppet(PlayerEvent.ItemCraftedEvent event) {
-        if (event.getEntity().level().isClientSide()) {
-            return;
-        }
+        Level level = event.getEntity().level();
 
         ItemStack craftedItem = event.getCrafting();
-        if (craftedItem.getItem() != BoundPoppetItem) {
+        if (!(craftedItem.getItem() instanceof BoundPoppetItem)) {
             return;
         }
 
@@ -77,19 +67,8 @@ public class BloodyNeedle {
         }
 
         UUID target = tag.getUUID("target");
-
-        Entity entity = SympathyHelper.getBoundEntity(needle, (ServerLevel) event.getEntity().level());
-        Component name = craftedItem.getDisplayName();
-        if (entity instanceof Player) {
-            name = Component.translatable("block.mnaw.bound_poppet.named.player", entity.getDisplayName().getString());
-        } else if (entity instanceof Mob) {
-            name = Component.translatable("block.mnaw.bound_poppet.named.mob", entity.getDisplayName().getString());
-        }
-
-        CompoundTag poppetTag = craftedItem.getOrCreateTag();
-        poppetTag.putUUID("target", target);
-        craftedItem.setTag(poppetTag);
-        craftedItem.setHoverName(name);
+        String type = tag.getString("type");
+        ((BoundPoppetItem)craftedItem.getItem()).setTarget(level, target, type, craftedItem);
     }
 
     @SubscribeEvent
@@ -138,14 +117,5 @@ public class BloodyNeedle {
         double d0 = player.getBlockReach();
         Vec3 vec31 = vec3.add((double)f6 * d0, (double)f5 * d0, (double)f7 * d0);
         return level.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, ClipContext.Fluid.WATER, player));
-    }
-
-    @Mod.EventBusSubscriber(modid = Witchcraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    class ModSetup {
-        @SubscribeEvent
-        public static void onSetup(FMLCommonSetupEvent event) {
-            PoppetItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Witchcraft.MOD_ID, "poppet"));
-            BoundPoppetItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Witchcraft.MOD_ID, "bound_poppet"));
-        }
     }
 }

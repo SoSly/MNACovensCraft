@@ -15,7 +15,9 @@ import com.mna.api.tools.MATags;
 import com.mna.blocks.tileentities.ChalkRuneTile;
 import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
+import com.mna.items.ItemInit;
 import com.mna.items.filters.SpellItemFilter;
+import com.mna.items.ritual.ItemPlayerCharm;
 import com.mna.spells.SpellsInit;
 import com.mna.tools.StructureUtils;
 import net.minecraft.network.chat.Component;
@@ -25,6 +27,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -90,9 +93,20 @@ public class SympathyRitual extends RitualEffect {
         }
 
         ItemStack spellItem = getSpellItem(ctx);
+        if (spellItem.isEmpty()) {
+            player.sendSystemMessage(Component.translatable("rituals.sympathy.no_spell"));
+            return false;
+        }
+
         ItemStack boundPoppet = getBoundPoppet(ctx);
-        if (spellItem.isEmpty() || boundPoppet.isEmpty()) {
+        if (boundPoppet.isEmpty()) {
             player.sendSystemMessage(Component.translatable("rituals.error.no_target"));
+            return false;
+        }
+
+        ItemStack charmItem = getPlayerCharm(ctx);
+        if (charmItem.isEmpty() || ((ItemPlayerCharm)charmItem.getItem()).getPlayerUUID(charmItem) != player.getUUID()) {
+            player.sendSystemMessage(Component.translatable("rituals.sympathy.not_your_charm"));
             return false;
         }
 
@@ -124,9 +138,14 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
-        if (target instanceof LivingEntity livingTarget) {
-            Optional<MobEffectInstance> brokenSympathy = getBrokenSympathy(livingTarget);
-            brokenSympathy.ifPresent(mobEffectInstance -> livingTarget.removeEffect(mobEffectInstance.getEffect()));
+        if (!(target instanceof LivingEntity livingTarget)) {
+            player.sendSystemMessage(Component.translatable("rituals.error.no_target"));
+            return false;
+        }
+
+        Optional<MobEffectInstance> brokenSympathy = getBrokenSympathy(livingTarget);
+        if (brokenSympathy.isPresent()) {
+            livingTarget.removeEffect(brokenSympathy.get().getEffect());
             player.sendSystemMessage(Component.translatable("rituals.sympathy.poppet_broken"));
             BlockEntity rune = level.getBlockEntity(ctx.getCenter());
             if (rune instanceof ChalkRuneTile chalkRuneTile) {
@@ -146,8 +165,8 @@ public class SympathyRitual extends RitualEffect {
         SpellContext spellContext = new SpellContext(level, spell);
 
         spell.iterateComponents(component ->  {
-            LOGGER.info("{} cast {} on {}.", player.getName().getString(), component.getPart().getRegistryName(),
-                    target.getName().getString());
+            Witchcraft.LOGGER.info("{} cast {} on {}.", player.getName().getString(), component.getPart()
+                            .getRegistryName(), target.getName().getString());
             affectTarget(level, spellShape, spellSource, spellTarget, component, spellContext);
         });
 
@@ -170,6 +189,13 @@ public class SympathyRitual extends RitualEffect {
         SpellItemFilter filter = new SpellItemFilter();
         return ctx.getCollectedReagents().stream()
                 .filter(filter::IsValidItem)
+                .findFirst()
+                .orElse(ItemStack.EMPTY);
+    }
+
+    private ItemStack getPlayerCharm(IRitualContext ctx) {
+        return ctx.getCollectedReagents().stream()
+                .filter(i -> i.getItem() == ItemInit.PLAYER_CHARM.get())
                 .findFirst()
                 .orElse(ItemStack.EMPTY);
     }

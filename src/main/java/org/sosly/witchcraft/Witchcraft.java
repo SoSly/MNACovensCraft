@@ -12,6 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.blocks.BlockRegistry;
+import org.sosly.witchcraft.blocks.EntityRegistry;
 import org.sosly.witchcraft.commands.CommandRegistry;
 import org.sosly.witchcraft.effects.EffectRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
@@ -27,6 +28,7 @@ public class Witchcraft {
 
         BlockRegistry.BLOCKS.register(modbus);
         EffectRegistry.EFFECTS.register(modbus);
+        EntityRegistry.BLOCK_ENTITIES.register(modbus);
         ItemRegistry.ITEMS.register(modbus);
 
         MinecraftForge.EVENT_BUS.register(CommandRegistry.class);

@@ -4,8 +4,6 @@ import com.mna.api.blocks.interfaces.ICutoutBlock;
 import com.mna.api.blocks.interfaces.ITranslucentBlock;
 import com.mna.api.items.MACreativeTabs;
 import com.mna.api.items.TieredBlockItem;
-import com.mna.blocks.IOffsetPlace;
-import com.mna.items.OffsetPlacerItem;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.Item;
@@ -21,31 +19,25 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import org.sosly.witchcraft.Witchcraft;
-import org.sosly.witchcraft.blocks.sympathy.BoundPoppet;
-import org.sosly.witchcraft.blocks.sympathy.Poppet;
-
-import java.util.Objects;
+import org.sosly.witchcraft.blocks.sympathy.BoundPoppetBlock;
+import org.sosly.witchcraft.blocks.sympathy.PoppetBlock;
+import org.sosly.witchcraft.items.sympathy.BoundPoppetItem;
 
 @Mod.EventBusSubscriber(modid = Witchcraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Witchcraft.MOD_ID);
-    public static final RegistryObject<BoundPoppet> BOUND_POPPET = BLOCKS.register("bound_poppet", BoundPoppet::new);
-    public static final RegistryObject<Poppet> POPPET = BLOCKS.register("poppet", Poppet::new);
+    public static final RegistryObject<BoundPoppetBlock> BOUND_POPPET = BLOCKS.register("bound_poppet", BoundPoppetBlock::new);
+    public static final RegistryObject<PoppetBlock> POPPET = BLOCKS.register("poppet", PoppetBlock::new);
 
     @SubscribeEvent
     public static void onRegisterItems(RegisterEvent event) {
         event.register(ForgeRegistries.ITEMS.getRegistryKey(), (helper) -> {
-            BLOCKS.getEntries().stream().map(RegistryObject::get).forEach((block) -> {
-                Item.Properties properties = new Item.Properties();
-                if (block instanceof IOffsetPlace adjuster) {
-                    Objects.requireNonNull((IOffsetPlace)block);
-                    OffsetPlacerItem blockItem = new OffsetPlacerItem(block, properties, adjuster::adjustPlacement);
-                    helper.register(ForgeRegistries.BLOCKS.getKey(block), blockItem);
-                } else {
-                    TieredBlockItem blockItemx = new TieredBlockItem(block, properties);
-                    helper.register(ForgeRegistries.BLOCKS.getKey(block), blockItemx);
-                }
-            });
+            Item.Properties properties = new Item.Properties();
+
+            BoundPoppetItem boundPoppetItem = new BoundPoppetItem(BOUND_POPPET.get());
+            helper.register(ForgeRegistries.BLOCKS.getKey(BOUND_POPPET.get()), boundPoppetItem);
+            TieredBlockItem poppetItem = new TieredBlockItem(POPPET.get(), properties);
+            helper.register(ForgeRegistries.BLOCKS.getKey(POPPET.get()), poppetItem);
         });
     }
 

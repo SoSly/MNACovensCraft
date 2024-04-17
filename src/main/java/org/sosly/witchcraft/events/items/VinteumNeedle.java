@@ -46,18 +46,12 @@ public class VinteumNeedle {
             tag = new CompoundTag();
         }
         tag.putUUID("target", target.getUUID());
+        tag.putString("type", target.getType().getDescription().getString());
+
         bloodyNeedle.setTag(tag);
-
-        String name = bloodyNeedle.getDisplayName().getString() + " of ";
-
         if (target instanceof Mob mob) {
             mob.setPersistenceRequired();
-            name += " a " + target.getDisplayName().getString();
-        } else {
-            name += target.getDisplayName().getString();
         }
-
-        heldItem.setHoverName(Component.literal(name));
         player.setItemInHand(player.getUsedItemHand(), bloodyNeedle);
     }
 }

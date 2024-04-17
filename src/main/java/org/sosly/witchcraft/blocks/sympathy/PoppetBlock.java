@@ -2,9 +2,15 @@ package org.sosly.witchcraft.blocks.sympathy;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -15,17 +21,23 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.sosly.witchcraft.blocks.entities.BoundPoppetEntity;
+import org.sosly.witchcraft.items.ItemRegistry;
+import org.sosly.witchcraft.items.sympathy.BoundPoppetItem;
+
+import java.util.UUID;
 
 
-public class Poppet extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
-    public Poppet(Properties properties) {
+public class PoppetBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+    public PoppetBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any()
                 .setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
                 .setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
-    public Poppet() {
+    public PoppetBlock() {
         super(BlockBehaviour.Properties.of()
                 .ignitedByLava()
                 .mapColor(MapColor.WOOL)
@@ -71,5 +83,29 @@ public class Poppet extends HorizontalDirectionalBlock implements SimpleWaterlog
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
         return super.updateShape(state, direction, newState, level, pos, posFrom);
+    }
+
+    @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        super.playerWillDestroy(level, pos, state, player);
+        if (!level.isClientSide() && !player.isCreative()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+
+            ResourceLocation key = ForgeRegistries.BLOCKS.getKey(this);
+            if (key == null) {
+                return;
+            }
+            Item boundPoppetItem = ForgeRegistries.ITEMS.getValue(key);
+            ItemStack stack = new ItemStack(boundPoppetItem);
+
+            if (blockEntity instanceof BoundPoppetEntity boundPoppet) {
+                UUID target = boundPoppet.target();
+                String type = boundPoppet.type();
+                if (target != null) {
+                    ((BoundPoppetItem)stack.getItem()).setTarget(level, target, type, stack);
+                }
+            }
+            Block.popResource(level, pos, stack);
+        }
     }
 }
