@@ -47,7 +47,7 @@ public class Coven extends BaseFaction {
 
     @Override
     public Component getOcculusTaskPrompt(int i) {
-        return null;
+        return Component.translatable("mnaw:factions/oculus_task_prompt");
     }
 
     @Override
