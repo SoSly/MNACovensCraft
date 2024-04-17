@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/SoSly/MNAWitchcraft/tree/1.20.1)
 
+### Changed
+- the bound poppet now also counts as a player charm
+- bloody needles and bound poppets now display who they are bound to in their tooltip 
+
 ### Fixed
 - fixed a typo in the factionless mages codex entry
 - fixed a bug causing manaweaving to crash the game after joining a coven
 - fixed a bug causing the occulus to crash the game when all progression steps were complete
+- poppets and bound poppets can now be picked up after they have been placed
 
 ## [1.20.1-forge-0.1.0-alpha](https://github.com/SoSly/MnAWitchcraft/releases/tag/1.20.1-forge-0.1.0-alpha)
 ### Added

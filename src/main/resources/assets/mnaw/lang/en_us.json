@@ -9,6 +9,10 @@
   "item.mnaw.antisympathy_charm": "Bloodstone Charm",
   "item.mnaw.antisympathy_charm.flavor": "Who knows if this thing even works, but it looks neat.",
   "item.mnaw.bloody_needle": "Bloody Needle",
+  "item.mnaw.bound_poppet": "Bound Poppet",
+  "item.mnaw.bound_poppet/not_bound": "Not Bound",
+  "item.mnaw.bound_poppet/player": "Bound to %s",
+  "item.mnaw.bound_poppet/mob": "Bound to a %s",
 
   "mnaw:factions/oculus_task_prompt": "Listen to the witches as they gossip.",
 
@@ -21,7 +25,9 @@
   "rituals.sympathy.charm_broken": "Your bloodstone charm shatters.",
   "rituals.sympathy.charm_resisted": "A new crack forms in your bloodstone charm.",
   "rituals.sympathy.no_self_spells": "Sympathetic magic does not work with spells that target yourself.",
+  "rituals.sympathy.no_spell": "No spell found for ritual, aborting.",
   "rituals.sympathy.not_a_witch": "Only coven witches can perform this ritual.",
+  "rituals.sympathy.not_your_charm": "The player charm must be attuned to you.",
   "rituals.sympathy.poppet_broken": "Your poppet was destroyed",
   "rituals.sympathy.target_protected": "Something is protecting your target."
 }
