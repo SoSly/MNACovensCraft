@@ -23,16 +23,28 @@ public class Config {
             .comment("How many spell effects should a player have to cast on a Witch mob to progress to the next tier?")
             .defineInRange("effectForTier", 3, 1, 10);
 
+    private static final ForgeConfigSpec.IntValue DEDICATION_CHARGES = BUILDER
+            .comment("How many charges should Dedication I give to a staff with 1 mana cost? (divide by mana cost to get charges for other spells)")
+            .defineInRange("dedicationCharges", 5000, 10, Integer.MAX_VALUE);
+
+    private static final ForgeConfigSpec.DoubleValue DEDICATION_TIER_MULTIPLIER = BUILDER
+            .comment("How much should the charge modifier increase per tier? (multiplier = 1 + (tier - 1) * this value)")
+            .defineInRange("dedicationChargeModifier", 0.25, 0.01, 100);
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static boolean bossesBlockSympathy;
     public static boolean bossesImmuneToSympathy;
+    public static int dedicationCharges;
+    public static double dedicationTierMultiplier;
     public static int effectForTier;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
         bossesBlockSympathy = BOSSES_BLOCK_SYMPATHY.get();
         bossesImmuneToSympathy = BOSSES_IMMUNE_TO_SYMPATHY.get();
+        dedicationCharges = DEDICATION_CHARGES.get();
+        dedicationTierMultiplier = DEDICATION_TIER_MULTIPLIER.get();
         effectForTier = EFFECT_FOR_TIER.get();
     }
 }
