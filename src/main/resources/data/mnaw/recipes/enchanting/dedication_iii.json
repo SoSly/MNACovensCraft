@@ -1,0 +1,17 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 4,
+  "output": "mna:rune_arcane",
+  "enchant": "mnaw:dedication",
+  "magnitude": 3,
+  "requiredFaction": "mnaw:coven",
+  "items": [
+    "mna:rune_arcane",
+    "mna:gold_ingot",
+    "mna:world_charm"
+  ],
+  "patterns": [
+    "mna:slash",
+    "mna:circle"
+  ]
+}

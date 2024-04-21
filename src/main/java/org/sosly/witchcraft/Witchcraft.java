@@ -15,6 +15,7 @@ import org.sosly.witchcraft.blocks.BlockRegistry;
 import org.sosly.witchcraft.blocks.EntityRegistry;
 import org.sosly.witchcraft.commands.CommandRegistry;
 import org.sosly.witchcraft.effects.EffectRegistry;
+import org.sosly.witchcraft.enchantments.EnchantmentRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -28,6 +29,7 @@ public class Witchcraft {
 
         BlockRegistry.BLOCKS.register(modbus);
         EffectRegistry.EFFECTS.register(modbus);
+        EnchantmentRegistry.ENCHANTMENTS.register(modbus);
         EntityRegistry.BLOCK_ENTITIES.register(modbus);
         ItemRegistry.ITEMS.register(modbus);
 

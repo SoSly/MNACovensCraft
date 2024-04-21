@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/SoSly/MNAWitchcraft/tree/1.20.1)
 
+### Added
+- added a new coven-only "dedication" charm that adds charges to custom staves, wands, and bangles
+
 ### Changed
 - the bound poppet now also counts as a player charm
 - bloody needles and bound poppets now display who they are bound to in their tooltip 

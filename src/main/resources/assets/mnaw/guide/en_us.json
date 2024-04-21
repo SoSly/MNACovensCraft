@@ -96,6 +96,61 @@
       }
     ]
   },
+  "Dedication": {
+    "index": 0,
+    "category": "enchantments",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dedication"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This enchantment is only available to members of the "
+          },
+          {
+            "text": "Coven",
+            "color": "blue"
+          },
+          {
+            "text": ", and it brings out the natural magic in their "
+          },
+          {
+            "text": "wands, staves, and bangles",
+            "color": "blue"
+          },
+          {
+              "text": ", rather than relying on their own essence."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:enchanting/dedication_i"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:enchanting/dedication_ii"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:enchanting/dedication_iii"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:enchanting/dedication_iv"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:enchanting/dedication_v"
+      }
+    ]
+  },
   "Ritual: Broken Sympathy": {
     "index": 0,
     "category": "rituals",
