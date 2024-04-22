@@ -15,6 +15,8 @@
   "item.mnaw.bound_poppet/not_bound": "Not Bound",
   "item.mnaw.bound_poppet/player": "Bound to %s",
   "item.mnaw.bound_poppet/mob": "Bound to a %s",
+  "item.mnaw.witch_eye": "Witch Eye",
+  "item.mnaw.witch_eye/tooltip": "Your witch eye reveals the following properties:",
 
   "mnaw:factions/oculus_task_prompt": "Listen to the witches as they gossip.",
 

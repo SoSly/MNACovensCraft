@@ -27,6 +27,44 @@
       }
     ]
   },
+  "Witch Eye": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Witch Eye"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This eye is said to allow the wearer to identify the alchemical properties of items in the world."
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "(This item only works if the "
+          },
+          {
+            "text": "Mystic Alchemy",
+            "color": "blue"
+          },
+          {
+            "text": " mod is installed.)"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:witch_eye"
+      }
+    ]
+  },
   "Factionless Mages": {
     "index": 11,
     "category": "basics",

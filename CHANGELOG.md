@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - added a new coven-only "dedication" charm that adds charges to custom staves, wands, and bangles
+- added the witch eye, a necklace that allows the wearer to understand the alchemical properties of items (requires Mystic Alchemy)
 
 ### Changed
 - the bound poppet now also counts as a player charm
