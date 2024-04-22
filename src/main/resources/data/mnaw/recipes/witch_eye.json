@@ -1,0 +1,16 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "mnaw:witch_eye",
+  "tier": 3,
+  "requiredFaction": "mnaw:coven",
+  "items": [
+    "minecraft:stone",
+    "minecraft:leather",
+    "mna:transmuted_silver"
+  ],
+  "patterns": [
+    "mna:triangle",
+    "mna:circle",
+    "mna:triangle"
+  ]
+}
