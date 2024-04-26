@@ -36,11 +36,7 @@ public class WitchEyeItem extends Item {
         }
 
         Optional<SlotResult> result = curios.get().findFirstCurio(ItemRegistry.WITCH_EYE.get());
-        if (result.isEmpty()) {
-            return false;
-        }
-
-        return true;
+        return result.isPresent();
     }
 
     public static void revealAlchemicalProperties(Level level, ItemStack item, List<Component> tooltips) {

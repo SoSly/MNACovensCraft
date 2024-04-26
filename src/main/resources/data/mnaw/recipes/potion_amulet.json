@@ -1,0 +1,15 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "mnaw:potion_amulet",
+  "tier": 3,
+  "requiredFaction": "mnaw:coven",
+  "items": [
+    "minecraft:amethyst_shard",
+    "mna:transmuted_silver",
+    "mna:purified_vinteum_dust"
+  ],
+  "patterns": [
+    "mna:square",
+    "mna:slash"
+  ]
+}

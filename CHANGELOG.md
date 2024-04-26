@@ -6,10 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/SoSly/MNAWitchcraft/tree/1.20.1)
-
 ### Added
 - added a new coven-only "dedication" charm that adds charges to custom staves, wands, and bangles
 - added the witch eye, a necklace that allows the wearer to understand the alchemical properties of items (requires Mystic Alchemy)
+- added a new potion amulet that allows the wearer to gain immunity to a potion effect while it is worn
 
 ### Changed
 - the bound poppet now also counts as a player charm

@@ -7,6 +7,7 @@
   "effect.mnaw.broken_sympathy": "Broken Sympathy",
 
   "enchantment.mnaw.dedication": "Dedication",
+  "enchantment.mnaw.potion_immune": "Potion Immunity",
 
   "item.mnaw.antisympathy_charm": "Bloodstone Charm",
   "item.mnaw.antisympathy_charm.flavor": "Who knows if this thing even works, but it looks neat.",
@@ -15,6 +16,8 @@
   "item.mnaw.bound_poppet/not_bound": "Not Bound",
   "item.mnaw.bound_poppet/player": "Bound to %s",
   "item.mnaw.bound_poppet/mob": "Bound to a %s",
+  "item.mnaw.potion_amulet": "Potion Amulet",
+  "item.mnaw.potion_amulet/tooltip": "Immune to %s",
   "item.mnaw.witch_eye": "Witch Eye",
   "item.mnaw.witch_eye/tooltip": "Your witch eye reveals the following properties:",
 
