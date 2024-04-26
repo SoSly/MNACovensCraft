@@ -27,6 +27,31 @@
       }
     ]
   },
+  "Potion Amulet": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Potion Amulet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This amulet grants the wearer immunity to the effects of a potion."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:potion_amulet"
+      }
+    ]
+  },
   "Witch Eye": {
     "index": 1,
     "category": "artifice",

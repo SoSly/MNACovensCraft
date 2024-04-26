@@ -11,10 +11,13 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.sosly.witchcraft.Witchcraft;
+import org.sosly.witchcraft.items.alchemy.PotionAmuletItem;
 import org.sosly.witchcraft.items.alchemy.WitchEyeItem;
 import org.sosly.witchcraft.items.armor.CovenArmorItem;
 import org.sosly.witchcraft.items.sympathy.AntiSympathyCharmItem;
 import org.sosly.witchcraft.items.sympathy.BloodyNeedleItem;
+
+import java.rmi.registry.Registry;
 
 @Mod.EventBusSubscriber(modid= Witchcraft.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegistry {
@@ -29,6 +32,7 @@ public class ItemRegistry {
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> COVEN_ARMOR_BOOTS = ITEMS.register("coven_armor_boots", () -> new CovenArmorItem(
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item> POTION_AMULET = ITEMS.register("potion_amulet", PotionAmuletItem::new);
     public static final RegistryObject<Item> WITCH_EYE = ITEMS.register("witch_eye", WitchEyeItem::new);
 
     @SubscribeEvent

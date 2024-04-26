@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "mnaw:potion_amulet"}
+  ],
+  "result": {
+    "item": "mnaw:potion_amulet"
+  }
+}

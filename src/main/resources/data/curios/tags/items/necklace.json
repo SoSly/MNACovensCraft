@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "mnaw:potion_amulet",
     "mnaw:witch_eye"
   ]
 }
