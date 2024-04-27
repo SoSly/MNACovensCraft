@@ -6,8 +6,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.sosly.witchcraft.items.ItemRegistry;
 
-public class PotionImmune extends MAEnchantmentBase {
-    public PotionImmune() {
+public class PotionImmuneEnchantment extends MAEnchantmentBase {
+    public PotionImmuneEnchantment() {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEARABLE, new EquipmentSlot[]{});
     }
 

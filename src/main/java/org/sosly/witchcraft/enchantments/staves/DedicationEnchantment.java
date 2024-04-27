@@ -11,9 +11,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import org.sosly.witchcraft.Config;
 
-public class Dedication extends MAEnchantmentBase {
+public class DedicationEnchantment extends MAEnchantmentBase {
     private static final int chargeModifier = 40;
-    public Dedication() {
+    public DedicationEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND});
     }
     public boolean canEnchant(ItemStack stack) {
@@ -52,6 +52,19 @@ public class Dedication extends MAEnchantmentBase {
         ItemUtils.writeMaxCharges(stack, (int) charges);
     }
 
+    public static boolean hasEnoughCharges(ItemStack stack, Player player) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        if (!(stack.getItem() instanceof ItemStaff staff)) {
+            return false;
+        }
+
+        int manaCost = (int) (staff.getSpell(stack, player).getManaCost() * chargeModifier);
+        return ItemUtils.getCharges(stack) > manaCost;
+    }
+
     public void removeEnchantment(ItemStack stack) {
         if (stack.isEmpty()) {
             return;
@@ -64,5 +77,24 @@ public class Dedication extends MAEnchantmentBase {
         stack.getOrCreateTag().remove("dedication");
         stack.getOrCreateTag().remove("charges");
         stack.getOrCreateTag().remove("max_charges");
+    }
+
+    public static void addMana(ItemStack stack, int magnitude) {
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        if (!(stack.getItem() instanceof ItemStaff staff)) {
+            return;
+        }
+
+        int charges = ItemUtils.getCharges(stack);
+        int maxCharges = ItemUtils.getMaxCharges(stack);
+        int mana = magnitude * (maxCharges / 5);
+        if (charges + mana > maxCharges) {
+            ItemUtils.writeCharges(stack, maxCharges);
+        } else {
+            ItemUtils.writeCharges(stack, charges + mana);
+        }
     }
 }
