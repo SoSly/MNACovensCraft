@@ -7,6 +7,7 @@ import com.mna.items.sorcery.ItemStaff;
 import com.mysticalchemy.crucible.CrucibleTile;
 import com.mysticalchemy.init.BlockInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.GrindstoneEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -105,6 +107,33 @@ public class Dedication {
                     event.setOutput(staff);
                 }
             });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onUseStaff(PlayerInteractEvent event) {
+        Level level = event.getLevel();
+        if (level.isClientSide()) {
+            return;
+        }
+
+        ItemStack stack = event.getItemStack();
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        if (!(stack.getItem() instanceof ItemStaff staff)) {
+            return;
+        }
+
+        if (EnchantmentHelper.getEnchantments(stack).get(EnchantmentRegistry.DEDICATION.get()) == null) {
+            return;
+        }
+
+        if (!DedicationEnchantment.hasEnoughCharges(stack, event.getEntity())) {
+            event.setCanceled(true);
+            Component message = Component.translatable("enchantment.mnaw.dedication/insufficient_charges", stack.getDisplayName());
+            event.getEntity().sendSystemMessage(message);
         }
     }
 }

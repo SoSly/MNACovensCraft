@@ -52,6 +52,19 @@ public class DedicationEnchantment extends MAEnchantmentBase {
         ItemUtils.writeMaxCharges(stack, (int) charges);
     }
 
+    public static boolean hasEnoughCharges(ItemStack stack, Player player) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        if (!(stack.getItem() instanceof ItemStaff staff)) {
+            return false;
+        }
+
+        int manaCost = (int) (staff.getSpell(stack, player).getManaCost() * chargeModifier);
+        return ItemUtils.getCharges(stack) > manaCost;
+    }
+
     public void removeEnchantment(ItemStack stack) {
         if (stack.isEmpty()) {
             return;
