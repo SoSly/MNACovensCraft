@@ -4,6 +4,8 @@ buildscript {
         maven { url = 'https://plugins.gradle.org/m2/' } // Required for CurseGradle
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' } // Required by geckolib
         maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = "https://jitpack.io" }
+
         mavenCentral()
     }
     dependencies {
@@ -96,6 +98,7 @@ dependencies {
     implementation fg.deobf("curse.maven:curios-${curios_projectId}:${curios_fileId}")
     implementation fg.deobf("curse.maven:geckolib-${geckolib_projectId}:${geckolib_fileId}")
     implementation fg.deobf("curse.maven:mana-and-artifice-${mna_projectId}:${mna_fileId}")
+//    implementation fg.deobf("com.github.nivthefox:mystic-alchemy:master-SNAPSHOT")
     implementation fg.deobf("curse.maven:mystic-alchemy-${alchemy_projectId}:${alchemy_fileId}")
 
     // these mods are included only for the purpose of testing
