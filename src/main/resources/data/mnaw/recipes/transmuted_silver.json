@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "NNN",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "mnaw:transmuted_silver_nugget"
+    }
+  },
+  "result": {
+    "item": "mna:transmuted_silver"
+  }
+}
