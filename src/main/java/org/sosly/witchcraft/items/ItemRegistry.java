@@ -33,6 +33,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> COVEN_ARMOR_BOOTS = ITEMS.register("coven_armor_boots", () -> new CovenArmorItem(
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.BOOTS, new Item.Properties()));
     public static final RegistryObject<Item> POTION_AMULET = ITEMS.register("potion_amulet", PotionAmuletItem::new);
+    public static final RegistryObject<Item> TRANSMUTED_SILVER_NUGGET = ITEMS.register("transmuted_silver_nugget", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WITCH_EYE = ITEMS.register("witch_eye", WitchEyeItem::new);
 
     @SubscribeEvent
