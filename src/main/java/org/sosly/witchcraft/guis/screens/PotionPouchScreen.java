@@ -1,11 +1,11 @@
-package org.sosly.witchcraft.gui.screens;
+package org.sosly.witchcraft.guis.screens;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.sosly.witchcraft.Witchcraft;
-import org.sosly.witchcraft.gui.containers.PotionPouchContainer;
+import org.sosly.witchcraft.guis.containers.PotionPouchContainer;
 
 public class PotionPouchScreen extends AbstractPlayerInventoryScreen<PotionPouchContainer> {
     public static final ResourceLocation InventoryTexture = new ResourceLocation(Witchcraft.MOD_ID, "textures/gui/potion_pouch.png");

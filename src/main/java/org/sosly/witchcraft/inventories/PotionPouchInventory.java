@@ -22,6 +22,19 @@ public class PotionPouchInventory extends ItemStackHandler {
     }
 
     @Override
+    public int getSlots() {
+        return potionSlots;
+    }
+
+    @Override
+    public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+        if (slot < potionSlots) {
+            super.setStackInSlot(slot, stack);
+            writeItemStack();
+        }
+    }
+
+    @Override
     public int getStackLimit(int slot, @NotNull ItemStack stack) {
         if (slot < potionSlots) {
             return 16;
@@ -41,7 +54,6 @@ public class PotionPouchInventory extends ItemStackHandler {
         if (pouch.getTag() != null && pouch.getTag().contains("contents")) {
             this.deserializeNBT(pouch.getTag().getCompound("contents"));
         }
-
     }
 
     public void writeItemStack() {

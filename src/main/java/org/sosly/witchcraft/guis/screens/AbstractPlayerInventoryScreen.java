@@ -1,4 +1,4 @@
-package org.sosly.witchcraft.gui.screens;
+package org.sosly.witchcraft.guis.screens;
 
 import com.mna.api.ManaAndArtificeMod;
 import net.minecraft.client.gui.GuiGraphics;

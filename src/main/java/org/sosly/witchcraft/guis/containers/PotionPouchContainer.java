@@ -1,14 +1,12 @@
-package org.sosly.witchcraft.gui.containers;
+package org.sosly.witchcraft.guis.containers;
 
-import com.mna.gui.containers.slots.ExtendedItemStackSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.Slot;
-import net.minecraftforge.items.SlotItemHandler;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.sosly.witchcraft.gui.ContainerRegistry;
-import org.sosly.witchcraft.gui.slots.PotionSlot;
+import org.sosly.witchcraft.guis.ContainerRegistry;
+import org.sosly.witchcraft.guis.slots.PotionSlot;
 import org.sosly.witchcraft.inventories.PotionPouchInventory;
 
 public class PotionPouchContainer extends AbstractPlayerInventoryContainer {
@@ -33,6 +31,15 @@ public class PotionPouchContainer extends AbstractPlayerInventoryContainer {
         }
 
         super.broadcastChanges();
+    }
+
+    @Override
+    public int getSlotCount() {
+        return this.inventory.getSlots();
+    }
+
+    public int getSlotSize(int idx, ItemStack stack) {
+        return this.inventory.getStackLimit(idx, stack);
     }
 
     protected void initializeSlots(Inventory playerInventory) {

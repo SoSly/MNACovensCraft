@@ -1,4 +1,4 @@
-package org.sosly.witchcraft.gui.slots;
+package org.sosly.witchcraft.guis.slots;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PotionItem;
