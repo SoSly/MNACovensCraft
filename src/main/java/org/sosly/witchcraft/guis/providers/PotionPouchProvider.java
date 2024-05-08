@@ -17,6 +17,7 @@ public class PotionPouchProvider implements MenuProvider {
     public PotionPouchProvider(ItemStack pouch) {
         this.pouch = pouch;
     }
+
     @Nullable
     public AbstractContainerMenu createMenu(int i, @NotNull Inventory playerInventory, @NotNull Player player) {
         return new PotionPouchContainer(i, playerInventory, new PotionPouchInventory(this.pouch));

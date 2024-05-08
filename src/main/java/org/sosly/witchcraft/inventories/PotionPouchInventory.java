@@ -5,6 +5,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import org.sosly.witchcraft.items.alchemy.PotionPouchItem;
 
 public class PotionPouchInventory extends ItemStackHandler {
     protected final ItemStack pouch;
@@ -17,8 +18,11 @@ public class PotionPouchInventory extends ItemStackHandler {
     }
 
     @Override
-    public int getSlotLimit(int i) {
-        return 16;
+    public int getSlotLimit(int slot) {
+        if (slot < potionSlots) {
+            return PotionPouchItem.getPotionDepth(pouch);
+        }
+        return 64;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class PotionPouchInventory extends ItemStackHandler {
     @Override
     public int getStackLimit(int slot, @NotNull ItemStack stack) {
         if (slot < potionSlots) {
-            return 16;
+            return PotionPouchItem.getPotionDepth(pouch);
         }
         return stack.getMaxStackSize();
     }

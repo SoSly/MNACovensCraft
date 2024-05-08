@@ -5,21 +5,24 @@ import net.minecraft.world.item.PotionItem;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.sosly.witchcraft.inventories.PotionPouchInventory;
 
 public class PotionSlot extends SlotItemHandler {
-    public PotionSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+    PotionPouchInventory inventory;
+    public PotionSlot(PotionPouchInventory itemHandler, int index, int xPosition, int yPosition) {
         super(itemHandler, index, xPosition, yPosition);
+        this.inventory = itemHandler;
     }
 
     @Override
     public int getMaxStackSize() {
-        return 16;
+        return inventory.getSlotLimit(getSlotIndex());
     }
 
     @Override
     public int getMaxStackSize(@NotNull ItemStack stack) {
         if (stack.getItem() instanceof PotionItem) {
-            return 16;
+            return inventory.getSlotLimit(getSlotIndex());
         } else {
             return super.getMaxStackSize(stack);
         }
