@@ -4,6 +4,7 @@ import com.mna.api.capabilities.IPlayerProgression;
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
 import com.mna.api.spells.ICanContainSpell;
+import com.mna.api.spells.SpellPartTags;
 import com.mna.api.spells.base.IModifiedSpellPart;
 import com.mna.api.spells.base.ISpellDefinition;
 import com.mna.api.spells.parts.Shape;
@@ -19,6 +20,7 @@ import com.mna.items.ItemInit;
 import com.mna.items.filters.SpellItemFilter;
 import com.mna.items.ritual.ItemPlayerCharm;
 import com.mna.spells.SpellsInit;
+import com.mna.spells.shapes.*;
 import com.mna.tools.StructureUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +29,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -121,7 +122,7 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
-        if (Config.bossesBlockSympathy && isInBossArena(level, target)) {
+        if (Config.bossesBlockSympathy && SympathyHelper.isInBossArena(level, target)) {
             player.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
             return false;
         }
@@ -200,13 +201,8 @@ public class SympathyRitual extends RitualEffect {
                 .orElse(ItemStack.EMPTY);
     }
 
-    private boolean isInBossArena(ServerLevel level, Entity target) {
-        return StructureUtils.isPointInAnyStructure(level, target.blockPosition(), MATags.Structures.BOSS_ARENAS);
-    }
-
     private boolean isSelfSpell(Shape part) {
-        return part.equals(SpellsInit.SELF) || part.equals(SpellsInit.BOUND_AXE) || part.equals(SpellsInit.BOUND_SWORD)
-                || part.equals(SpellsInit.BOUND_BOW) || part.equals(SpellsInit.BOUND_SHIELD);
+        return part instanceof ShapeSelf || part instanceof ShapeBoundAxe || part instanceof ShapeBoundSword || part instanceof ShapeBoundBow || part instanceof ShapeBoundShield;
     }
 
     private void affectTarget(Level level, IModifiedSpellPart<Shape> shape, SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> effect, SpellContext ctx) {

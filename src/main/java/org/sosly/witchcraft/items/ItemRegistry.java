@@ -12,14 +12,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.sosly.witchcraft.Witchcraft;
 import org.sosly.witchcraft.items.alchemy.PotionAmuletItem;
+import org.sosly.witchcraft.items.alchemy.PotionPouchItem;
 import org.sosly.witchcraft.items.alchemy.WitchEyeItem;
 import org.sosly.witchcraft.items.armor.CovenArmorItem;
 import org.sosly.witchcraft.items.sympathy.AntiSympathyCharmItem;
 import org.sosly.witchcraft.items.sympathy.BloodyNeedleItem;
 
-import java.rmi.registry.Registry;
-
-@Mod.EventBusSubscriber(modid= Witchcraft.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid= Witchcraft.MOD_ID, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Witchcraft.MOD_ID);
     public static final RegistryObject<Item> ANTISYMPATHY_CHARM = ITEMS.register("antisympathy_charm", AntiSympathyCharmItem::new);
@@ -33,6 +32,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> COVEN_ARMOR_BOOTS = ITEMS.register("coven_armor_boots", () -> new CovenArmorItem(
             MAArmorMaterial.INFUSED_SILK, ArmorItem.Type.BOOTS, new Item.Properties()));
     public static final RegistryObject<Item> POTION_AMULET = ITEMS.register("potion_amulet", PotionAmuletItem::new);
+    public static final RegistryObject<Item> POTION_POUCH = ITEMS.register("potion_pouch", PotionPouchItem::new);
     public static final RegistryObject<Item> TRANSMUTED_SILVER_NUGGET = ITEMS.register("transmuted_silver_nugget", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WITCH_EYE = ITEMS.register("witch_eye", WitchEyeItem::new);
 

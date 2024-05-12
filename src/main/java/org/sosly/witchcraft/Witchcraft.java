@@ -9,11 +9,14 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sosly.witchcraft.blocks.BlockRegistry;
 import org.sosly.witchcraft.blocks.EntityRegistry;
 import org.sosly.witchcraft.commands.CommandRegistry;
+import org.sosly.witchcraft.guis.ContainerRegistry;
+import org.sosly.witchcraft.guis.ScreenRegistry;
 import org.sosly.witchcraft.effects.EffectRegistry;
 import org.sosly.witchcraft.enchantments.EnchantmentRegistry;
 import org.sosly.witchcraft.items.ItemRegistry;
@@ -28,6 +31,7 @@ public class Witchcraft {
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         BlockRegistry.BLOCKS.register(modbus);
+        ContainerRegistry.CONTAINERS.register(modbus);
         EffectRegistry.EFFECTS.register(modbus);
         EnchantmentRegistry.ENCHANTMENTS.register(modbus);
         EntityRegistry.BLOCK_ENTITIES.register(modbus);
@@ -38,6 +42,10 @@ public class Witchcraft {
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        if (FMLEnvironment.dist.isClient()) {
+            modbus.register(ScreenRegistry.class);
+        }
     }
 
     @SubscribeEvent

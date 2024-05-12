@@ -1,0 +1,16 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "mnaw:potion_pouch",
+  "tier": 3,
+  "requiredFaction": "mnaw:coven",
+  "items": [
+    "minecraft:leather",
+    "minecraft:leather",
+    "minecraft:leather",
+    "mnaw:transmuted_silver_nugget"
+  ],
+  "patterns": [
+    "mna:square",
+    "mna:inverted_triangle"
+  ]
+}

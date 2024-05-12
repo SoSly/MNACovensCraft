@@ -1,6 +1,8 @@
 package org.sosly.witchcraft.utils;
 
+import com.mna.api.tools.MATags;
 import com.mna.entities.boss.BossMonster;
+import com.mna.tools.StructureUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -40,5 +42,9 @@ public class SympathyHelper {
         }
 
         return entity;
+    }
+
+    public static boolean isInBossArena(ServerLevel level, Entity target) {
+        return StructureUtils.isPointInAnyStructure(level, target.blockPosition(), MATags.Structures.BOSS_ARENAS);
     }
 }
