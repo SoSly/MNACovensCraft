@@ -52,6 +52,43 @@
       }
     ]
   },
+  "Potion Pouch": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Potion Pouch"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This pouch can be used to stack potions of the same type, allowing the wearer to carry more potions."
+          },
+          {
+              "text": "\n\n"
+          },
+          {
+              "text": "By default it can hold 16 potions of the same type in a single stack, but I also might be able "
+          },
+          {
+              "text": "to apply patches from my practitioner's pouch for more!  Depth, Speed, Conveyance, and Collection",
+          },
+          {
+              "text": " all seem like they would have some value."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mnaw:potion_pouch"
+      }
+    ]
+  },
   "Witch Eye": {
     "index": 1,
     "category": "artifice",

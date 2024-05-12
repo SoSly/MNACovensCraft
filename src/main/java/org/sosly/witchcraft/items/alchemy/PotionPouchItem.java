@@ -2,6 +2,7 @@ package org.sosly.witchcraft.items.alchemy;
 
 import com.mna.KeybindInit;
 import com.mna.api.items.ITieredItem;
+import com.mna.blocks.tileentities.ChalkRuneTile;
 import com.mna.items.base.IRadialInventorySelect;
 import com.mna.items.base.IRadialMenuItem;
 import com.mna.items.base.ItemBagBase;
@@ -12,26 +13,34 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
+import org.sosly.witchcraft.Config;
 import org.sosly.witchcraft.guis.providers.PotionPouchProvider;
 import org.sosly.witchcraft.inventories.PotionPouchInventory;
+import org.sosly.witchcraft.utils.SympathyHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class PotionPouchItem extends ItemBagBase implements IRadialMenuItem, IRadialInventorySelect, ITieredItem<PotionPouchItem> {
     private int tier;
@@ -68,8 +77,14 @@ public class PotionPouchItem extends ItemBagBase implements IRadialMenuItem, IRa
         MutableComponent component = Component.translatable("item.mna.patch.prompt");
 
         List<String> patches = ((PotionPouchItem)stack.getItem()).getPatches(stack);
-        for (String patch : patches) {
-            component.append(Component.translatable("item.mna.patch_" + patch + ".simple"));
+        for (int i = 0; i < patches.size(); i++) {
+            component.append(Component.translatable("item.mna.patch_" + patches.get(i) + ".simple"));
+            if (i < patches.size() - 2) {
+                component.append(", ");
+            }
+            if (i == patches.size() - 2) {
+                component.append(", and ");
+            }
         }
         component.withStyle(ChatFormatting.YELLOW);
         tooltips.add(component);
@@ -128,14 +143,35 @@ public class PotionPouchItem extends ItemBagBase implements IRadialMenuItem, IRa
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity) {
-        ItemStack potionStack = getPotionStack(stack);
-        if (potionStack.isEmpty()) {
-            return stack;
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack pouch, @NotNull Level level, @NotNull LivingEntity target) {
+        if (level.isClientSide()) {
+            return pouch;
         }
-        potionStack.finishUsingItem(level, entity);
-        getInventory(stack).setStackInSlot(getIndex(stack), potionStack);
-        return stack;
+
+        ItemStack potionStack = getPotionStack(pouch);
+        if (potionStack.isEmpty()) {
+            return pouch;
+        }
+        if (pouch.getOrCreateTag().getInt("conveyance") == 1 && pouch.getOrCreateTag().contains("conveyance_target")) {
+            UUID targetUUID = pouch.getOrCreateTag().getUUID("conveyance_target");
+            Player playerTarget = level.getPlayerByUUID(targetUUID);
+            if (playerTarget != null) {
+                if (Config.bossesBlockSympathy && SympathyHelper.isInBossArena((ServerLevel) level, target)) {
+                    target.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
+                    return pouch;
+                }
+
+                if (Config.bossesImmuneToSympathy && SympathyHelper.isBoss(target)) {
+                    target.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
+                    return pouch;
+                }
+                // todo: support broken sympathy ritual
+                target = playerTarget;
+            }
+        }
+        potionStack.finishUsingItem(level, target);
+        getInventory(pouch).setStackInSlot(getIndex(pouch), potionStack);
+        return pouch;
     }
 
     @Override
@@ -199,7 +235,10 @@ public class PotionPouchItem extends ItemBagBase implements IRadialMenuItem, IRa
         if (potionStack.isEmpty()) {
             return 0;
         }
-        return potionStack.getItem().getUseDuration(potionStack);
+
+        float speed = stack.getOrCreateTag().getInt("speed");
+        float modifier = 1.0f / (speed + 1);
+        return (int) (potionStack.getItem().getUseDuration(potionStack) * modifier);
     }
 
     @Override
@@ -240,13 +279,12 @@ public class PotionPouchItem extends ItemBagBase implements IRadialMenuItem, IRa
             return InteractionResultHolder.pass(player.getItemInHand(hand));
         }
 
-        // Drink the potion!
         ItemStack pouch = player.getItemInHand(hand);
         ItemStack potionStack = getPotionStack(pouch);
         if (potionStack.isEmpty()) {
             return InteractionResultHolder.pass(player.getItemInHand(hand));
         }
-        potionStack.use(player.getCommandSenderWorld(), player, hand);
+        potionStack.use(level, player, hand);
         return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 

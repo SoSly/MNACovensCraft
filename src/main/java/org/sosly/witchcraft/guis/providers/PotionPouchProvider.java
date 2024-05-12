@@ -25,6 +25,6 @@ public class PotionPouchProvider implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Potion Pouch");
+        return Component.translatable("item.mnaw.potion_pouch");
     }
 }

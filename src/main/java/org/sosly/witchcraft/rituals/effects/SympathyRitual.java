@@ -122,7 +122,7 @@ public class SympathyRitual extends RitualEffect {
             return false;
         }
 
-        if (Config.bossesBlockSympathy && isInBossArena(level, target)) {
+        if (Config.bossesBlockSympathy && SympathyHelper.isInBossArena(level, target)) {
             player.sendSystemMessage(Component.translatable("rituals.sympathy.target_protected"));
             return false;
         }
@@ -199,10 +199,6 @@ public class SympathyRitual extends RitualEffect {
                 .filter(i -> i.getItem() == ItemInit.PLAYER_CHARM.get())
                 .findFirst()
                 .orElse(ItemStack.EMPTY);
-    }
-
-    private boolean isInBossArena(ServerLevel level, Entity target) {
-        return StructureUtils.isPointInAnyStructure(level, target.blockPosition(), MATags.Structures.BOSS_ARENAS);
     }
 
     private boolean isSelfSpell(Shape part) {

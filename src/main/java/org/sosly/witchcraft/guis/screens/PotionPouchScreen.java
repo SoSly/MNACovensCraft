@@ -21,14 +21,38 @@ public class PotionPouchScreen extends AbstractPlayerInventoryScreen<PotionPouch
         this.renderBackground(graphics);
         int xPos = this.leftPos + (this.imageWidth / 2);
         int yPos = (this.topPos + this.imageHeight) - 90;
+
+        // Render the player inventory
         this.renderPlayerInventory(graphics, xPos, yPos);
 
+        xPos -= 96;
         yPos -= 72;
-        graphics.blit(InventoryTexture, xPos - 96, yPos, 0, 118, 150, 32);
+
+        // Render the potion inventory
+        int pockets = menu.getPotionPouchInventory().getPouch().getOrCreateTag().getInt("pocket");
+        switch (pockets) {
+            case 2:
+                graphics.blit(InventoryTexture, xPos, yPos, 0, 0, 104, 32);
+            case 1:
+                graphics.blit(InventoryTexture, xPos, yPos, 0, 86, 104, 32);
+            default:
+                graphics.blit(InventoryTexture, xPos, yPos, 0, 118, 104, 32);
+        }
+
+        // Render the patches
+        yPos -= 32 * (pockets + 1);
+        graphics.blit(InventoryTexture, xPos, yPos, 0, 150, 104, 36);
+
+        // Render the Conveyance Pouch
+        graphics.blit(InventoryTexture, xPos + 99, yPos - 1, 105, 150, 36, 36);
     }
 
     @Override
     public void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         super.renderTooltip(graphics, mouseX - this.leftPos, mouseY - this.topPos);
+    }
+
+    private void renderPatches(GuiGraphics graphics, int xPos, int yPos) {
+
     }
 }
