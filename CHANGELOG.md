@@ -6,11 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/SoSly/MNAWitchcraft/tree/1.20.1)
+### Requirements
+- [Mystic Alchemy](https://www.curseforge.com/minecraft/mc-mods/mystic-alchemy) is now **required**.
+
 ### Added
 - added a new coven-only "dedication" enchantment that adds charges to custom staves, wands, and bangles
 - added the witch eye, a necklace that allows the wearer to understand the alchemical properties of items (requires Mystic Alchemy)
 - added a new potion amulet that allows the wearer to gain immunity to a potion effect while it is worn
 - transmuted silver can now be broken down into nuggets (and I suppose you can make them into ingots again, but why would you want to do that?)
+- added a new potion pouch that can store stacks of potions 
 
 ### Changed
 - the bound poppet now also counts as a player charm
