@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added a new potion amulet that allows the wearer to gain immunity to a potion effect while it is worn
 - transmuted silver can now be broken down into nuggets (and I suppose you can make them into ingots again, but why would you want to do that?)
 - added a new potion pouch that can store stacks of potions 
+- added 4 textures, one for each piece of the Witch's Armor
 
 ### Changed
 - the bound poppet now also counts as a player charm
